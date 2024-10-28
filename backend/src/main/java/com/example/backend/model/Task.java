@@ -1,4 +1,6 @@
-package model;
+package com.example.backend.model;
+
+import com.fasterxml.jackson.annotation.JsonBackReference;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -24,6 +26,7 @@ public class Task {
 	
 	@ManyToOne
 	@JoinColumn(name="project_id", nullable = false)
+	@JsonBackReference
 	private Project project;
 	
 	@Column(name = "status")

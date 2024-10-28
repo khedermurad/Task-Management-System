@@ -1,4 +1,4 @@
-package model;
+package com.example.backend.model;
 
 public enum TaskStatus {
     PENDING,

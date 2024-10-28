@@ -1,7 +1,9 @@
-package model;
+package com.example.backend.model;
 
 import java.util.Date;
 import java.util.List;
+
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
@@ -34,6 +36,7 @@ public class Project {
 	private Date endDate;
 	
 	@OneToMany(mappedBy = "project", cascade = CascadeType.ALL, orphanRemoval = true)
+	@JsonManagedReference
 	private List<Task> tasks;
 	
 	public Project() {
