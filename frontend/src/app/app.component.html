@@ -1,1 +1,26 @@
-<p>TEST</p>
+<nav
+  class="navbar navbar-light bg-light d-flex justify-content-start align-items-center"
+>
+  <!-- Navbar Brand Logo und Text -->
+  <a
+    class="navbar-brand d-flex align-items-center me-3"
+    routerLink="projects"
+    routerLinkActive="active"
+  >
+    <img
+      src="\logo.PNG"
+      width="120"
+      height="60"
+      class="d-inline-block align-top"
+      alt=""
+    />
+    Projects
+  </a>
+
+  <!-- "Create"-Button ohne ul-Liste -->
+  <button class="btn btn-primary">Create</button>
+</nav>
+
+<div class="container">
+  <router-outlet></router-outlet>
+</div>
