@@ -1,0 +1,39 @@
+.project-container {
+    padding: 16px;
+  }
+  
+  .project-header {
+    display: flex;
+    gap: 16px;
+    align-items: center;
+    margin-bottom: 24px;
+  }
+  
+  .task-board {
+    display: flex;
+    gap: 16px;
+    justify-content: space-between;
+  }
+  
+  .column {
+    flex: 1;
+    padding: 16px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    background-color: #f9f9f9;
+  }
+  
+  .task {
+    margin: 8px 0;
+  }
+  
+  .task-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .task-actions {
+    display: flex;
+    gap: 8px;
+  }

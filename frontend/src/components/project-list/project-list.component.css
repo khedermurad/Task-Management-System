@@ -1,16 +1,15 @@
 .project-name {
-  font-size: 1.2em; 
-  font-weight: bold; 
+  font-size: 1.2em;
+  font-weight: bold;
 }
 
 .project-dates {
-  font-size: 0.9em; 
-  font-style: italic; 
-  color: #666; 
+  font-size: 0.9em;
+  font-style: italic;
+  color: #666;
 }
 
-
-.button{
+.button {
   position: fixed;
   right: 250px;
 }

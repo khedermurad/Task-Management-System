@@ -6,11 +6,19 @@ import { CommonModule } from '@angular/common';
 import { MatIconModule } from '@angular/material/icon';
 import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatButtonModule } from '@angular/material/button';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-project-list',
   standalone: true,
-  imports: [MatListModule, CommonModule, MatIconModule, MatSnackBarModule, MatButtonModule],
+  imports: [
+    MatListModule,
+    CommonModule,
+    MatIconModule,
+    MatSnackBarModule,
+    MatButtonModule,
+    RouterLink,
+  ],
   templateUrl: './project-list.component.html',
   styleUrl: './project-list.component.css',
 })
@@ -18,7 +26,7 @@ export class ProjectListComponent implements OnInit {
   projects!: Project[];
 
   projectService = inject(ProjectService);
-  snackbar = inject(MatSnackBar)
+  snackbar = inject(MatSnackBar);
 
   ngOnInit(): void {
     this.getProjects();
@@ -35,14 +43,21 @@ export class ProjectListComponent implements OnInit {
     });
   }
 
-  public handleClick(name: String){
+  public handleClick(name: String) {
     this.snackbar.open(`Name: ${name}`, 'Schließen', {
-      duration: 3000,  // Zeit in Millisekunden
+      duration: 3000, // Zeit in Millisekunden
     });
   }
 
-  public deleteProject(){
-    
+  public deleteProject(id: number) {
+    this.projectService.deleteProject(id).subscribe({
+      next: (data) => {
+        console.log(data);
+        this.getProjects();
+      },
+      error: (err) => {
+        console.log(err);
+      },
+    });
   }
-
 }
