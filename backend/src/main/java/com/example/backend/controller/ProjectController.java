@@ -8,7 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import com.example.backend.exception.RessourceNotFoundException;
+import com.example.backend.exception.ResourceNotFoundException;
 import com.example.backend.model.Project;
 import com.example.backend.repository.ProjectRepository;
 
@@ -27,7 +27,7 @@ public class ProjectController {
 	@DeleteMapping("/{id}")
 	public ResponseEntity<Map<String, Boolean>> deleteProject(@PathVariable Long id){
 		Project project = projectRepository.findById(id).orElseThrow(
-				() -> new RessourceNotFoundException("Project does not exist with id: " + id));
+				() -> new ResourceNotFoundException("Project does not exist with id: " + id));
 		
 		projectRepository.delete(project);
 		Map<String, Boolean> response = new HashMap<>();
@@ -38,14 +38,14 @@ public class ProjectController {
 
 	@GetMapping("/{id}")
 	public ResponseEntity<Project> getProjectById(@PathVariable Long id){
-		Project project = projectRepository.findById(id).orElseThrow(() -> new RessourceNotFoundException("Project does not exist with id: " + id));
+		Project project = projectRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Project does not exist with id: " + id));
 
 		return ResponseEntity.ok(project);
 	}
 
 	@PutMapping("/{id}")
 	public ResponseEntity<Project> updateProject(@PathVariable Long id, @RequestBody Project project){
-		Project newProject = projectRepository.findById(id).orElseThrow(() -> new RessourceNotFoundException("Project does not exist with id: " + id));
+		Project newProject = projectRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Project does not exist with id: " + id));
 
 		newProject.setName(project.getName());
 		newProject.setStartDate(project.getStartDate());
@@ -58,6 +58,11 @@ public class ProjectController {
 		Project updatedProject = projectRepository.save(newProject);
 
 		return ResponseEntity.ok(updatedProject);
+	}
+
+	@PostMapping
+	public Project createProject(@RequestBody Project project){
+		return projectRepository.save(project);
 	}
 
 	

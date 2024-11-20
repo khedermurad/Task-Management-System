@@ -1,23 +1,15 @@
 <nav
-  class="navbar navbar-light bg-light d-flex justify-content-start align-items-center"
+  class="navbar custom-navbar bg-light d-flex justify-content-start align-items-center"
 >
-  <!-- Navbar Brand Logo und Text -->
   <a
     class="navbar-brand d-flex align-items-center me-3"
     routerLink="projects"
     routerLinkActive="active"
   >
-    <img
-      src="\logo.PNG"
-      width="120"
-      height="60"
-      class="d-inline-block align-top"
-      alt=""
-    />
-    Projects
+    <div class="brand-title">TMS</div>
+    <span class="projects-title">Projects</span>
   </a>
 
-  <!-- "Create"-Button ohne ul-Liste -->
   <button (click)="navigateToCreateProject()" class="btn btn-primary">
     Create
   </button>

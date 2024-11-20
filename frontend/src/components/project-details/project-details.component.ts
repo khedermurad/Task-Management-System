@@ -81,7 +81,7 @@ export class ProjectDetailsComponent implements OnInit {
 
   addTask(status: string) {
     const taskToAdd: Task = {
-      description: 'Neuer Task',
+      description: 'new task',
       status: status.replace(' ', '_'),
       projectId: this.id,
     };

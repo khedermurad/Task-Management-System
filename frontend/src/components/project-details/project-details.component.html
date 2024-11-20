@@ -15,7 +15,7 @@
         [(ngModel)]="project.startDate"
         [matDatepicker]="startPicker"
         (dateChange)="onProjectChange()"
-        placeholder="Startdatum"
+        placeholder="Start date"
       />
       <mat-datepicker-toggle
         matSuffix
@@ -30,7 +30,7 @@
         [(ngModel)]="project.endDate"
         [matDatepicker]="endPicker"
         (dateChange)="onProjectChange()"
-        placeholder="Enddatum"
+        placeholder="End date"
       />
       <mat-datepicker-toggle
         matSuffix
@@ -39,8 +39,6 @@
       <mat-datepicker #endPicker></mat-datepicker>
     </mat-form-field>
   </div>
-
-  <!-- Aufgaben-Tabelle -->
 
   <div cdkDropListGroup class="task-board">
     @for (status of ["PENDING", "IN PROGRESS", "DONE"]; track status) {
@@ -54,7 +52,7 @@
       >
         <h3>{{ status | titlecase }}</h3>
         <button mat-raised-button color="primary" (click)="addTask(status)">
-          Task hinzufügen
+          Add task
         </button>
 
         @for (task of getTasksByStatus(status); track task) {
@@ -69,6 +67,7 @@
                   (ngModelChange)="onProjectChange()"
                   #textInput
                   (input)="adjustInputWidth(textInput)"
+                  aria-placeholder="task"
                 />
 
                 <div class="task-actions">
