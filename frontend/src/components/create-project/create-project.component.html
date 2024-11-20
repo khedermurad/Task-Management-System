@@ -1,0 +1,27 @@
+<div class="col-md-6 offset-md-3">
+  <h3>Create Project</h3>
+  <form (ngSubmit)="onSubmit()">
+    <!-- Titel -->
+    <div class="form-group">
+      <label>Title</label>
+      <input type="text" class="form-control" id="title" name="title" />
+    </div>
+
+    <!-- Startdatum -->
+    <div class="form-group">
+      <label>Start Date</label>
+      <input type="date" class="form-control" id="startDate" name="startDate" />
+    </div>
+
+    <!-- Enddatum -->
+    <div class="form-group">
+      <label>End Date</label>
+      <input type="date" class="form-control" id="endDate" name="endDate" />
+    </div>
+
+    <!-- Submit Button -->
+    <button class="btn btn-success" type="submit" style="margin-top: 30px">
+      Submit
+    </button>
+  </form>
+</div>

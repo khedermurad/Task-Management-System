@@ -2,13 +2,19 @@
   <!-- Projektinformationen -->
   <div class="project-header">
     <mat-form-field>
-      <input matInput [(ngModel)]="project.name" placeholder="Projektname" />
+      <input
+        matInput
+        [(ngModel)]="project.name"
+        (ngModelChange)="onProjectChange()"
+        placeholder="Project name"
+      />
     </mat-form-field>
     <mat-form-field>
       <input
         matInput
         [(ngModel)]="project.startDate"
         [matDatepicker]="startPicker"
+        (dateChange)="onProjectChange()"
         placeholder="Startdatum"
       />
       <mat-datepicker-toggle
@@ -23,6 +29,7 @@
         matInput
         [(ngModel)]="project.endDate"
         [matDatepicker]="endPicker"
+        (dateChange)="onProjectChange()"
         placeholder="Enddatum"
       />
       <mat-datepicker-toggle
@@ -34,34 +41,46 @@
   </div>
 
   <!-- Aufgaben-Tabelle -->
-  <div class="task-board">
-    <div
-      class="column"
-      *ngFor="let column of columns"
-      cdkDropList
-      [cdkDropListData]="column.tasks"
-      (cdkDropListDropped)="drop($event)"
-    >
-      <h3>{{ column.name }}</h3>
-      <button mat-raised-button color="primary" (click)="addTask(column)">
-        Task hinzufügen
-      </button>
 
-      <div class="task" *ngFor="let task of column.tasks" cdkDrag>
-        <mat-card>
-          <div class="task-content">
-            <span>{{ task.title }}</span>
-            <div class="task-actions">
-              <button mat-icon-button (click)="editTask(task)">
-                <mat-icon>edit</mat-icon>
-              </button>
-              <button mat-icon-button (click)="deleteTask(task, column)">
-                <mat-icon>delete</mat-icon>
-              </button>
-            </div>
+  <div cdkDropListGroup class="task-board">
+    @for (status of ["PENDING", "IN PROGRESS", "DONE"]; track status) {
+      <div
+        cdkDropList
+        class="column"
+        [cdkDropListData]="getTasksByStatus(status)"
+        (cdkDropListDropped)="drop($event)"
+        [cdkDropListConnectedTo]="['PENDING', 'IN PROGRESS', 'DONE']"
+        [id]="status"
+      >
+        <h3>{{ status | titlecase }}</h3>
+        <button mat-raised-button color="primary" (click)="addTask(status)">
+          Task hinzufügen
+        </button>
+
+        @for (task of getTasksByStatus(status); track task) {
+          <div cdkDrag class="task">
+            <mat-card>
+              <div class="task-content">
+                <input
+                  matInput
+                  [(ngModel)]="task.description"
+                  placeholder="task"
+                  class="task-edit-input"
+                  (ngModelChange)="onProjectChange()"
+                  #textInput
+                  (input)="adjustInputWidth(textInput)"
+                />
+
+                <div class="task-actions">
+                  <button mat-icon-button (click)="deleteTask(task)">
+                    <mat-icon>delete</mat-icon>
+                  </button>
+                </div>
+              </div>
+            </mat-card>
           </div>
-        </mat-card>
+        }
       </div>
-    </div>
+    }
   </div>
 </div>

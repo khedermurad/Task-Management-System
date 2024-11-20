@@ -1,5 +1,5 @@
-import { Component } from '@angular/core';
-import { RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
+import { Component, inject } from '@angular/core';
+import { Router, RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
 import { ProjectListComponent } from '../components/project-list/project-list.component';
 
 @Component({
@@ -11,4 +11,10 @@ import { ProjectListComponent } from '../components/project-list/project-list.co
 })
 export class AppComponent {
   title = 'frontend';
+
+  router = inject(Router)
+
+  public navigateToCreateProject(){
+    this.router.navigate(['create-project'])
+  }
 }
